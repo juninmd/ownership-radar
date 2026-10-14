@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "Ownership Radar",
+  "version": "1.0.0",
+  "description": "Dynamically suggests code owners per file or folder with explanations in GitHub UI.",
+  "permissions": [
+    "activeTab"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://github.com/*"
+      ],
+      "css": [
+        "src/styles/ownership-radar.css"
+      ],
+      "js": [
+        "src/components/badge.js",
+        "src/components/panel.js",
+        "src/content.js"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "src/styles/ownership-radar.css"
+      ],
+      "matches": [
+        "https://github.com/*"
+      ]
+    }
+  ]
+}
