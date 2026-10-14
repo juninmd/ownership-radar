@@ -1,13 +1,13 @@
 {
   "name": "ownership-radar",
   "version": "1.0.0",
-  "description": "Export ownership data as CSV for team onboarding documentation",
+  "description": "Detect and notify when CODEOWNERS is significantly out of sync with actual ownership",
   "type": "module",
-  "main": "src/csv-exporter.js",
+  "main": "src/index.js",
   "scripts": {
     "test": "node --test"
   },
   "keywords": [],
   "author": "",
-  "license": "MIT"
+  "license": "ISC"
 }
