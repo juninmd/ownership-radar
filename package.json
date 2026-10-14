@@ -1,0 +1,13 @@
+{
+  "name": "ownership-radar",
+  "version": "1.0.0",
+  "description": "Detect and notify when CODEOWNERS is significantly out of sync with actual ownership",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
