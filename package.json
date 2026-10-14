@@ -1,11 +1,20 @@
 {
   "name": "ownership-radar",
   "version": "1.0.0",
-  "description": "Detect and notify when CODEOWNERS is significantly out of sync with actual ownership",
-  "main": "src/index.js",
+  "description": "Suggest reviewers for PRs based on file ownership and recent collaboration",
+  "main": "dist/content.js",
   "type": "module",
   "scripts": {
-    "test": "node --test"
+    "build": "vite build",
+    "test": "vitest run",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.5",
+    "happy-dom": "^21.0.1",
+    "typescript": "^5.4.0",
+    "vite": "^5.2.0",
+    "vitest": "^1.4.0"
   },
   "keywords": [],
   "author": "",
