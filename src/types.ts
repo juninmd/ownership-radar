@@ -1,34 +1,38 @@
-export interface CommitInfo {
+export interface Commit {
   hash: string;
   author: string;
-  authorEmail?: string;
-  date: string | Date;
-  filesChanged: {
-    path: string;
-    additions?: number;
-    deletions?: number;
+  email?: string;
+  date: string; // ISO date string
+  filename: string;
+  additions?: number;
+  deletions?: number;
+}
+
+export interface FileOwnershipSummary {
+  filename: string;
+  totalCommits: number;
+  authorCommits: Record<string, number>;
+  authorLastCommitDate: Record<string, string>;
+  authorAdditions: Record<string, number>;
+}
+
+export interface ReviewerSuggestion {
+  username: string;
+  score: number;
+  ownershipPercentage: number;
+  recentCommitsCount: number;
+  lastActiveDate: string | null;
+  explanations: string[];
+  fileBreakdown: {
+    filename: string;
+    commitsInFile: number;
+    totalFileCommits: number;
+    lastCommitDate: string;
   }[];
 }
 
-export interface PackageInfo {
-  name: string;
-  rootPath: string; // Relative path from repo root e.g. "packages/core"
-}
-
-export interface OwnershipScore {
-  author: string;
-  score: number;
-  commitCount: number;
-  linesChanged: number;
-  lastCommitDate?: Date;
-  whyExplanation: string;
-}
-
-export interface FileOwnershipResult {
-  filePath: string;
-  packageName?: string;
-  packageRoot?: string;
-  topOwner?: OwnershipScore;
-  owners: OwnershipScore[];
-  isMonorepoScoped: boolean;
+export interface AnalyzeOptions {
+  prAuthor?: string;
+  halfLifeDays?: number; // Days for recency exponential decay (default 90 days)
+  maxSuggestions?: number;
 }
