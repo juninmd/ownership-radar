@@ -1,8 +1,8 @@
 {
   "name": "ownership-radar",
   "version": "1.0.0",
-  "description": "Suggest reviewers for PRs based on file ownership and recent collaboration",
-  "main": "dist/content.js",
+  "description": "A GitHub browser extension that analyzes recent commit history to dynamically suggest code owners per file or folder, displaying transparent 'why' explanations directly in the GitHub UI",
+  "main": "src/index.js",
   "type": "module",
   "main": "src/index.js",
   "scripts": {
@@ -15,7 +15,8 @@
     "happy-dom": "^21.0.1",
     "typescript": "^5.9.3",
     "vite": "^8.3.4",
-    "vitest": "^5.0.4"
+    "vitest": "^5.0.4",
+    "jsdom": "^26.0.0"
   },
   "keywords": [],
   "author": "",

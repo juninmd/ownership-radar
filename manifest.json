@@ -10,5 +10,11 @@
       "matches": ["https://github.com/*/*/pull/*"],
       "js": ["dist/content.js"]
     }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["src/styles/ownership-radar.css"],
+      "matches": ["https://github.com/*"]
+    }
   ]
 }
