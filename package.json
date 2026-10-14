@@ -1,0 +1,15 @@
+{
+  "name": "ownership-radar",
+  "version": "1.0.0",
+  "description": "GitHub browser extension that dynamically suggests code owners with team lead weight overrides",
+  "main": "dist/content.js",
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3",
+    "vitest": "^1.6.1"
+  }
+}
