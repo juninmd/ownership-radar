@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "description": "GitHub browser extension that dynamically suggests code owners with team lead weight overrides",
   "main": "dist/content.js",
+  "type": "module",
   "scripts": {
-    "build": "tsc",
-    "typecheck": "tsc --noEmit",
-    "test": "vitest run"
+    "test": "node --test"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
     "typescript": "^5.9.3",
     "vitest": "^1.6.1"
