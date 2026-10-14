@@ -1,1 +1,9 @@
-* @github-actions
+# Global default owners for all repository files
+*                   @ownership-radar/maintainers
+
+# Workflow and action definitions
+/.github/           @ownership-radar/maintainers
+
+# Scripts and tests
+/scripts/           @ownership-radar/maintainers
+/tests/             @ownership-radar/maintainers
