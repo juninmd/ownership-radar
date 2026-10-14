@@ -4,6 +4,7 @@
   "description": "A GitHub browser extension that analyzes recent commit history to dynamically suggest code owners per file or folder, displaying transparent 'why' explanations directly in the GitHub UI",
   "main": "src/index.js",
   "type": "module",
+  "main": "src/index.js",
   "scripts": {
     "build": "vite build",
     "test": "vitest run",
