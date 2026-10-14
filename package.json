@@ -2,8 +2,8 @@
   "name": "ownership-radar",
   "version": "1.0.0",
   "description": "A GitHub browser extension that analyzes recent commit history to dynamically suggest code owners per file or folder, displaying transparent 'why' explanations directly in the GitHub UI",
-  "main": "src/content.js",
-  "type": "commonjs",
+  "main": "src/index.js",
+  "type": "module",
   "scripts": {
     "test": "node --test"
   },
@@ -12,5 +12,5 @@
   },
   "keywords": [],
   "author": "",
-  "license": "MIT"
+  "license": "ISC"
 }
