@@ -1,0 +1,13 @@
+{
+  "name": "ownership-radar",
+  "version": "1.0.0",
+  "description": "Export ownership data as CSV for team onboarding documentation",
+  "type": "module",
+  "main": "src/csv-exporter.js",
+  "scripts": {
+    "test": "node --test"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT"
+}
