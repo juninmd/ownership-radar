@@ -1,0 +1,17 @@
+{
+  "name": "ownership-radar",
+  "version": "0.1.0",
+  "description": "A GitHub browser extension that analyzes recent commit history to dynamically suggest code owners per file or folder with per-package scoping.",
+  "main": "dist/content.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run"
+  },
+  "devDependencies": {
+    "@types/jsdom": "^30.0.0",
+    "jsdom": "^29.1.1",
+    "tsx": "^4.23.15",
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.1"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "Ownership Radar",
+  "version": "0.1.0",
+  "description": "Analyze GitHub commit history to dynamically suggest code owners per package/file.",
+  "permissions": [
+    "activeTab"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://github.com/*"],
+      "js": ["dist/content.js"]
+    }
+  ]
+}
