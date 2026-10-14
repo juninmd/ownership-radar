@@ -4,6 +4,7 @@
   "description": "Suggest reviewers for PRs based on file ownership and recent collaboration",
   "main": "dist/content.js",
   "type": "module",
+  "main": "src/index.js",
   "scripts": {
     "build": "vite build",
     "test": "vitest run",
