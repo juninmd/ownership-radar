@@ -3,12 +3,12 @@
   "name": "Ownership Radar",
   "version": "1.0.0",
   "description": "Suggest reviewers for GitHub PRs based on file ownership and recent collaboration",
+  "permissions": ["activeTab"],
+  "host_permissions": ["https://api.github.com/*"],
   "content_scripts": [
     {
       "matches": ["https://github.com/*/*/pull/*"],
       "js": ["dist/content.js"]
     }
-  ],
-  "permissions": ["activeTab"],
-  "host_permissions": ["https://api.github.com/*"]
+  ]
 }
