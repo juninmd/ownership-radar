@@ -1,4 +1,4 @@
-import { Commit, ContributionWindowMetric, OwnershipMetricType } from './types.js';
+import { TrendCommit, ContributionWindowMetric, OwnershipMetricType } from './types.js';
 
 export interface ModuleWindowAnalysis {
   windowMetricMap: Map<string, ContributionWindowMetric>; // key: author
@@ -28,7 +28,7 @@ export function getMetricValue(
 }
 
 export function aggregateContributions(
-  commits: Commit[],
+  commits: TrendCommit[],
   moduleFilter: string,
   startDate: Date,
   endDate: Date

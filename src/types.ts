@@ -48,6 +48,10 @@ export interface OwnershipSuggestion {
   isTopOwner: boolean;
 }
 
+/**
+ * Commit no formato usado pela analise de ownership por arquivo
+ * (`ownership.ts`, `content.ts`).
+ */
 export interface Commit {
   hash: string;
   author: string;
@@ -56,6 +60,60 @@ export interface Commit {
   filename: string;
   additions?: number;
   deletions?: number;
+}
+
+/**
+ * Commit no formato usado pela analise de tendencias por modulo
+ * (`analyzer.ts`, `trends.ts`).
+ *
+ * Era o mesmo `Commit` antes, mas as duas features foram desenvolvidas em
+ * paralelo com formatos incompativeis (aqui o commit agrega modulo e janela de
+ * tempo, la ele e por arquivo). Separar os tipos e o que permite as duas
+ * coexistirem.
+ */
+export interface TrendCommit {
+  author: string;
+  module: string;
+  timestamp: Date | string | number;
+  commitsCount?: number;
+  linesAdded?: number;
+  linesDeleted?: number;
+}
+
+/** Commit no formato consumido pelo calculo de ownership de monorepo. */
+export interface CommitInfo {
+  hash: string;
+  author: string;
+  authorEmail?: string;
+  date: string | Date;
+  filesChanged: {
+    path: string;
+    additions?: number;
+    deletions?: number;
+  }[];
+}
+
+export interface PackageInfo {
+  name: string;
+  rootPath: string; // Relative path from repo root e.g. "packages/core"
+}
+
+export interface OwnershipScore {
+  author: string;
+  score: number;
+  commitCount: number;
+  linesChanged: number;
+  lastCommitDate?: Date;
+  whyExplanation: string;
+}
+
+export interface FileOwnershipResult {
+  filePath: string;
+  packageName?: string;
+  packageRoot?: string;
+  topOwner?: OwnershipScore;
+  owners: OwnershipScore[];
+  isMonorepoScoped: boolean;
 }
 
 export interface FileOwnershipSummary {
@@ -85,4 +143,44 @@ export interface AnalyzeOptions {
   prAuthor?: string;
   halfLifeDays?: number; // Days for recency exponential decay (default 90 days)
   maxSuggestions?: number;
+}
+
+export type OwnershipMetricType = 'commits' | 'linesChanged' | 'weighted';
+
+export interface ContributionWindowMetric {
+  author: string;
+  module: string;
+  commitsCount: number;
+  linesAdded: number;
+  linesDeleted: number;
+  totalLinesChanged: number;
+}
+
+export type TrendDirection = 'increased' | 'decreased' | 'unchanged';
+
+export interface TrendAnalysisOptions {
+  windowDays?: number;
+  metric?: OwnershipMetricType;
+  asOfDate?: Date | string | number;
+}
+
+export interface OwnershipTrend {
+  author: string;
+  module: string;
+  timeWindowDays: number;
+  currentOwnershipShare: number;
+  previousOwnershipShare: number;
+  absoluteChangeShare: number;
+  percentagePointsChange: number;
+  trendDirection: TrendDirection;
+  currentPeriodContributions: ContributionWindowMetric;
+  previousPeriodContributions: ContributionWindowMetric;
+}
+
+export interface TrendSummary {
+  author: string;
+  module: string;
+  timeWindowDays: number;
+  trend: OwnershipTrend;
+  formattedSummary: string;
 }

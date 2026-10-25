@@ -1,12 +1,12 @@
 import { describe, expect, it } from 'vitest';
-import { Commit } from '../src/types.js';
+import { TrendCommit } from '../src/types.js';
 import { calculateOwnershipTrend, formatTrendSummary, analyzeOwnershipTrends } from '../src/trends.js';
 
 describe('Ownership Trends Analyzer', () => {
   const refDate = new Date('2026-10-14T12:00:00Z');
   const msPerDay = 24 * 60 * 60 * 1000;
 
-  function createCommit(author: string, moduleName: string, daysAgo: number, commitsCount = 1, linesAdded = 10): Commit {
+  function createCommit(author: string, moduleName: string, daysAgo: number, commitsCount = 1, linesAdded = 10): TrendCommit {
     const timestamp = new Date(refDate.getTime() - daysAgo * msPerDay);
     return {
       author,
@@ -19,7 +19,7 @@ describe('Ownership Trends Analyzer', () => {
   }
 
   it("should calculate an increase in ownership (e.g., Alexandre's ownership of tax module increased 30% in last 30 days)", () => {
-    const commits: Commit[] = [];
+    const commits: TrendCommit[] = [];
 
     // Previous 30 days (days 31 to 60 ago): Alexandre 5 commits, Bob 5 commits => 50% ownership
     for (let i = 0; i < 5; i++) {
@@ -53,7 +53,7 @@ describe('Ownership Trends Analyzer', () => {
   });
 
   it('should calculate a decrease in ownership', () => {
-    const commits: Commit[] = [];
+    const commits: TrendCommit[] = [];
 
     // Previous 30 days: Alexandre 7 commits out of 10 (70%)
     for (let i = 0; i < 7; i++) commits.push(createCommit('Alexandre', 'billing', 45));
@@ -76,7 +76,7 @@ describe('Ownership Trends Analyzer', () => {
   });
 
   it('should calculate unchanged ownership', () => {
-    const commits: Commit[] = [];
+    const commits: TrendCommit[] = [];
 
     // Previous 30 days: Alexandre 5 / 10 = 50%
     for (let i = 0; i < 5; i++) commits.push(createCommit('Alexandre', 'auth', 40));
@@ -99,7 +99,7 @@ describe('Ownership Trends Analyzer', () => {
   });
 
   it('should support custom windowDays (e.g. 14 days)', () => {
-    const commits: Commit[] = [];
+    const commits: TrendCommit[] = [];
 
     // Previous 14 days (days 15 to 28 ago): Alexandre 1 / 4 = 25%
     commits.push(createCommit('Alexandre', 'frontend', 20));
@@ -121,7 +121,7 @@ describe('Ownership Trends Analyzer', () => {
   });
 
   it('should calculate trends using linesChanged metric', () => {
-    const commits: Commit[] = [
+    const commits: TrendCommit[] = [
       // Previous window: Alexandre added 100 lines out of 200 total (50%)
       createCommit('Alexandre', 'tax module', 40, 1, 100),
       createCommit('Bob', 'tax module', 40, 1, 100),
@@ -142,7 +142,7 @@ describe('Ownership Trends Analyzer', () => {
   });
 
   it('should handle analyzeOwnershipTrends for multiple author-module combinations', () => {
-    const commits: Commit[] = [
+    const commits: TrendCommit[] = [
       createCommit('Alexandre', 'tax module', 40),
       createCommit('Bob', 'tax module', 40),
       createCommit('Alexandre', 'tax module', 10, 4),

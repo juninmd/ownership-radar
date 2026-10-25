@@ -1,5 +1,5 @@
 import {
-  Commit,
+  TrendCommit,
   ContributionWindowMetric,
   OwnershipTrend,
   TrendAnalysisOptions,
@@ -21,7 +21,7 @@ function emptyMetric(author: string, moduleName: string): ContributionWindowMetr
   };
 }
 
-export function determineAsOfDate(commits: Commit[], explicitAsOf?: Date | string | number): Date {
+export function determineAsOfDate(commits: TrendCommit[], explicitAsOf?: Date | string | number): Date {
   if (explicitAsOf) {
     return parseDate(explicitAsOf);
   }
@@ -42,7 +42,7 @@ export function determineAsOfDate(commits: Commit[], explicitAsOf?: Date | strin
 }
 
 export function calculateOwnershipTrend(
-  commits: Commit[],
+  commits: TrendCommit[],
   author: string,
   moduleName: string,
   options: TrendAnalysisOptions = {}
@@ -116,7 +116,7 @@ export function formatTrendSummary(trend: OwnershipTrend): TrendSummary {
 }
 
 export function analyzeOwnershipTrends(
-  commits: Commit[],
+  commits: TrendCommit[],
   options: TrendAnalysisOptions = {}
 ): TrendSummary[] {
   // Collect all unique author/module pairs
