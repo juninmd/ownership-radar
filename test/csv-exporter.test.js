@@ -84,3 +84,10 @@ test('exportOwnershipCsv generates and returns CSV string in Node environment', 
   assert.ok(result.includes('docs/onboarding.md'));
   assert.ok(result.includes('team-lead'));
 });
+
+test('escapeCsvCell neutralizes spreadsheet formula injection', () => {
+  assert.equal(escapeCsvCell('=HYPERLINK("http://x")'), `"'=HYPERLINK(""http://x"")"`);
+  assert.equal(escapeCsvCell('@cmd'), "'@cmd");
+  assert.equal(escapeCsvCell('+1'), "'+1");
+  assert.equal(escapeCsvCell(-5), '-5');
+});

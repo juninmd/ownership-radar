@@ -15,7 +15,12 @@ export function escapeCsvCell(val) {
   if (val === null || val === undefined) {
     return '""';
   }
-  const str = String(val);
+  let str = String(val);
+  // Neutralize spreadsheet formula injection (CSV injection): cells that start
+  // with = + - @ (or tab/CR) are prefixed with a single quote.
+  if (/^[=+\-@\t\r]/.test(str) && typeof val !== 'number') {
+    str = `'${str}`;
+  }
   if (/[",\n\r]/.test(str)) {
     return `"${str.replace(/"/g, '""')}"`;
   }
